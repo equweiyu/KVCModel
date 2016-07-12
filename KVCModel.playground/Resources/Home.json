@@ -1,0 +1,21 @@
+{
+    "errorCode": "SUCCESS",
+    "message": null,
+    "data": {
+        "dict": {
+            "id": 3,
+            "text": "equweiyu"
+        },
+        "list": [{
+            "headId": 0,
+            "text": "aaa",
+        }, {
+            "headId": 1,
+            "text": "bbb",
+        }, {
+            "headId": 2,
+            "text": "ccc",
+        }, ],
+        "page": 0
+    }
+}
