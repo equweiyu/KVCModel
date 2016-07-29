@@ -1,5 +1,7 @@
 import Foundation
 
+let jsondata = ["name":"equweiyu"]
+
 class KVCModel: NSObject {
     override func setValue(value: AnyObject?, forUndefinedKey key: String) {
     
@@ -59,6 +61,9 @@ class listModel: KVCModel {
 var json = NSData(contentsOfURL: [#FileReference(fileReferenceLiteral: "Home.json")#])?.JSONObject()
 //NetDataModel
 let netData = json.flatMap(NetDataModel.init)
+
+//NetDataModel(obj: nil)
+
 //[listModel]
 let list = (netData?.data?["list"] as? [AnyObject])?.map(listModel.init)
 //DataModel
