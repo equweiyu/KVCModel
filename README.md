@@ -1,5 +1,6 @@
 # swift JSON解析
-[Argo](https://github.com/thoughtbot/Argo)是一个很流行的函数式JSON解析库，但是Argo有点麻烦，我想为什么不能利用KVC自己做JSON解析呢
+
+[KVCModel](https://github.com/equweiyu/KVCModel)
 
 先看一段JSON数据，这是网络返回的数据
 
