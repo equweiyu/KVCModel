@@ -63,6 +63,7 @@ class KVCModel: NSObject {
 }
 ```
 但是要注意`setValuesForKeys` 对 `Int` 不友好 要使用`NSNumber`代替
+
 2. 创建Model继承于基类
 
 ```swift
@@ -98,6 +99,7 @@ class listModel: KVCModel {
 }
 ```
 如果Model的属性是`KVCModel` 或者`[KVCModel]` 就在 `setValue(_ value: Any?, forKey key: String)` 解析
+
 3. 使用
 
 解析`NetDataModel`:
