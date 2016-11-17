@@ -1,6 +1,5 @@
 import Foundation
 
-@objc(KVCModel)
 class KVCModel: NSObject {
     
     override func setValue(_ value: Any?, forUndefinedKey key: String) {
@@ -26,13 +25,11 @@ extension Data {
         return try? JSONSerialization.jsonObject(with: self, options: [])
     }
 }
-@objc(NetDataModel)
 class NetDataModel:KVCModel {
     var errorCode:String?
     var data:AnyObject?
     var message:String?
 }
-@objc(DataModel)
 class DataModel: KVCModel {
     var dict:DictModel?
     var list:[listModel]?
@@ -50,12 +47,10 @@ class DataModel: KVCModel {
         }
     }
 }
-@objc(dictModel)
 class DictModel: KVCModel {
     var id:NSNumber?
     var text:String?
 }
-@objc(listModel)
 class listModel: KVCModel {
     var headId:NSNumber?
     var text:String?

@@ -1,0 +1,12 @@
+{
+    "errorCode": "SUCCESS",
+    "message": null,
+    "data": {
+        "dict": {
+            "id": 3,
+            "text": "equweiyu"
+        },
+        "list": 12,
+        "page": 0
+    }
+}

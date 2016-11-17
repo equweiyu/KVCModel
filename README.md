@@ -46,21 +46,23 @@ let model = netData?.data.flatMap(DataModel.init)
 
 ```swift
 class KVCModel: NSObject {
-    override func setValue(value: AnyObject?, forUndefinedKey key: String) {
+    
+    override func setValue(_ value: Any?, forUndefinedKey key: String) {
+        
     }
-    override func setValue(value: AnyObject?, forKey key: String) {
+    override func setValue(_ value: Any?, forKey key: String) {
         super.setValue(value, forKey: key)
     }
-    convenience init(json: [String:AnyObject]?) {
+    convenience init(json: [String:Any]?) {
         self.init()
-        json.flatMap(self.setValuesForKeysWithDictionary)
+        json.flatMap(self.setValuesForKeys)
     }
-    convenience init(obj:AnyObject?) {
-        self.init(json: obj as? [String:AnyObject])
+    convenience init(obj:Any?) {
+        self.init(json: obj as? [String:Any])
     }
 }
 ```
-但是要注意`setValuesForKeysWithDictionary` 对 `Int` 不友好 要使用`NSNumber`代替
+但是要注意`setValuesForKeys` 对 `Int` 不友好 要使用`NSNumber`代替
 2. 创建Model继承于基类
 
 ```swift
@@ -74,10 +76,11 @@ class DataModel: KVCModel {
     var list:[listModel]?
     var page:NSNumber?
     
-    override func setValue(value: AnyObject?, forKey key: String) {
+    override func setValue(_ value: Any?, forKey key: String) {
         switch key {
         case "dict":
-            self.dict = value.flatMap(dictModel.init)
+            self.dict = value.flatMap(DictModel.init)
+            self.dict = value.flatMap(DictModel.init)
         case "list":
             self.list = (value as? [AnyObject])?.map(listModel.init)
         default:
@@ -94,7 +97,7 @@ class listModel: KVCModel {
     var text:String?
 }
 ```
-如果Model的属性是`KVCModel` 或者`[KVCModel]` 就在 `setValue(value: AnyObject?, forKey key: String)` 解析
+如果Model的属性是`KVCModel` 或者`[KVCModel]` 就在 `setValue(_ value: Any?, forKey key: String)` 解析
 3. 使用
 
 解析`NetDataModel`:

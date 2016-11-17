@@ -29,7 +29,7 @@ extension String {
 }
 
 
-//@objc(KVCReflectModel)
+@objc(KVCReflectModel)
 class KVCReflectModel: NSObject {
     override func setValue(_ value: Any?, forUndefinedKey key: String) {
     }
@@ -43,10 +43,7 @@ class KVCReflectModel: NSObject {
                 if str.match(regularExpression: "^Optional<.*>$") {
                     str = str.substring(to:str.length - 1).substring(from:"^Optional<".length - 1)
                 }
-//                if ["Int","Double","Float","NSInteger","Bool"].contains(str) && String(chird.value) == "nil" {
-//                    assertionFailure("\(key):\(str) 是基础类型需要初始化 ")
-//                }
-
+                
                 if str.match(regularExpression:"^Array<.*>$") {
                     let cname = str.substring(to:str.length - 1).substring(from:"^Array<".length - 1)
                     if let sclass = NSClassFromString(cname) as? KVCReflectModel.Type {
@@ -57,9 +54,11 @@ class KVCReflectModel: NSObject {
                     }
                 }else {
                     let cname = str
+
                     if let sclass = NSClassFromString(cname) as? KVCReflectModel.Type {
                         let v = value.flatMap(sclass.init)
                         super.setValue(v, forKey: key)
+
                     }else {
                         super.setValue(value, forKey: key)
                     }
@@ -94,25 +93,26 @@ extension Data {
         return try? JSONSerialization.jsonObject(with: self, options: [])
     }
 }
-//@objc(NetDataModel)
+@objc(NetDataModel)
 class NetDataModel:KVCReflectModel {
     var errorCode:String?
     var data:Any?
     var message:String?
 }
 
-//@objc(DataModel)
+@objc(DataModel)
 class DataModel: KVCReflectModel {
-    var dict:dictModel?
+    var dict:DictModel?
     var list:NSInteger = 0
     var page:NSNumber?
 }
 
-@objc(dictModel)
-class dictModel: KVCReflectModel {
+@objc(DictModel)
+class DictModel: KVCReflectModel {
     var id:NSNumber?
     var text:String?
 }
+
 
 
 
@@ -126,5 +126,4 @@ let netData = json.flatMap(NetDataModel.init)
 let data = netData?.data
 
 let model = data.flatMap(DataModel.init)
-model?.dict?.id
 
