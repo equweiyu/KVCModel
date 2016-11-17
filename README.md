@@ -40,7 +40,7 @@ let list = (netData?.data?["list"] as? [AnyObject])?.map(listModel.init)
 let model = netData?.data.flatMap(DataModel.init)
 ```
 
-1. 封装一个JSON解析基类
+####1. 封装一个JSON解析基类
 
 使用`setValuesForKeysWithDictionary`方法解析，很简单
 
@@ -63,7 +63,7 @@ class KVCModel: NSObject {
 }
 ```
 但是要注意`setValuesForKeys` 对 `Int` 不友好 要使用`NSNumber`代替
-2. 创建Model继承于基类
+####2. 创建Model继承于基类
 
 ```swift
 class NetDataModel:KVCModel {
@@ -98,7 +98,7 @@ class listModel: KVCModel {
 }
 ```
 如果Model的属性是`KVCModel` 或者`[KVCModel]` 就在 `setValue(_ value: Any?, forKey key: String)` 解析
-3. 使用
+####3. 使用
 
 解析`NetDataModel`:
 	`let netData = json.flatMap(NetDataModel.init)`
